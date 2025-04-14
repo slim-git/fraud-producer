@@ -50,7 +50,7 @@ async def read_root(request: Request):
 
 @app.get("/current-transactions")
 @limiter.limit(RATE_LIMIT)
-async def current_transactions():
+async def current_transactions(request: Request):
     """
     Return one current transaction in [`.to_json(orient="split")`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html) format in Pandas.
     """
