@@ -1,0 +1,1 @@
+docker run -it -e PORT=4000 -p 4000:4000 -v "$(pwd):/home/app" jedha/real-time-payments-api-lead-program
