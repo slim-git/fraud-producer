@@ -16,6 +16,13 @@ load_dotenv()
 
 RATE_LIMIT = os.getenv("RATE_LIMIT", "30/minute")
 
+DEFAULT_DATASET_URL = "https://lead-program-assets.s3.eu-west-3.amazonaws.com/M05-Projects/fraudTest.csv"
+DATASET_URL = os.getenv("DATASET_URL", DEFAULT_DATASET_URL)
+
+# ========================================================================
+# FastAPI app
+# ========================================================================
+
 description = f"""
 Welcome to this Real-time Payments API! Try it out 🕹️
 ## Endpoints
@@ -54,7 +61,7 @@ def get_full_dataframe():
     Get the full dataframe from the CSV file.
     This function is cached for performance reasons.
     """
-    filename = "https://lead-program-assets.s3.eu-west-3.amazonaws.com/M05-Projects/fraudTest.csv"
+    filename = DATASET_URL
     return pd.read_csv(filename, header=0, index_col=[0])
 
 @app.get("/current-transactions")
